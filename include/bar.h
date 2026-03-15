@@ -6,9 +6,9 @@
 
 class Bar {
   public:
-    Customer customers[10];
+    Customer customers[5];
     byte numCustomers = 0;
-    Beer beers[10];
+    Beer beers[5];
     byte numBeers = 0;
     bool filling = false;
     Bar() {};

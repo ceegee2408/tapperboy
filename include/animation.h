@@ -12,7 +12,7 @@ class Animation {
     const Asset* asset;
     uint8_t framesRest;
     Animation() : numFrames(0), asset(nullptr), framesRest(0), currentFrame(0), rest(0) {};
-    Animation(uint8_t numFrames, const Asset* asset, uint8_t framesRest) : numFrames(numFrames), asset(asset), framesRest(framesRest), currentFrame(0), rest(0) {};
+    Animation(const Asset* asset) : numFrames(asset->frames()), asset(asset), framesRest(GLOBAL_FRAME_DELAY), currentFrame(0), rest(0) {};
     void update(position pos) {
         if (rest > 0) {
             rest--;

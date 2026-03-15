@@ -3,6 +3,8 @@
 
 #include "bitmaps.h"
 
+#define GLOBAL_FRAME_DELAY 5
+
 enum AssetIndex
 {
     BAR_BACKGROUND = 0,
@@ -20,7 +22,8 @@ public:
     
     uint8_t width() const { return pgm_read_byte(bitmap); }
     uint8_t height() const { return pgm_read_byte(bitmap + 1); }
-    const uint8_t* data() const { return (bitmap + 2); }
+    uint8_t frames() const { return pgm_read_byte(bitmap + 2); }
+    const uint8_t* data() const { return (bitmap + 3); }
 };
 
 class AssetHandler

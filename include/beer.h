@@ -7,12 +7,7 @@
 class Beer : public Entity {
   public:
   bool ready = false;
-    Animation animations[4] = {
-        Animation(1, AssetHandler::get(BEER_EMPTY), 0),   // Empty
-        Animation(1, AssetHandler::get(BEER_FILLED), 0),  // Filled
-        Animation(1, AssetHandler::get(BEER_FILL), 0),    // Filling
-        Animation(1, AssetHandler::get(BEER_TUMBLE), 0)   // Tumbling
-    };
+    Animation animation = {};
     Beer() : Entity() {}
     Beer(position pos) : Entity(pos, {0, 0}), ready(false) {}
     
@@ -39,10 +34,13 @@ class Beer : public Entity {
     
     void draw() {
         position pos = {pos.x, pos.y};
-        animations[animState].update(pos);
+        animation.update(pos);
     }
 
-    private:
+
+
+    private:    
+    
     enum BeerState {
         NONE,
         EMPTY,
@@ -57,6 +55,27 @@ class Beer : public Entity {
         ANIMFILLING,
         ANIMTUMBLING
     } animState = ANIMNONE;
+    
+    void setState(BeerState newState) {
+        state = newState;
+        switch (state) {
+            case NONE:
+                animation = Animation(AssetHandler::get(BEER_EMPTY));
+                break;
+            case EMPTY:
+                animation = Animation(AssetHandler::get(BEER_EMPTY));
+                break;
+            case FILLING:
+                animation = Animation(AssetHandler::get(BEER_FILL));
+                break;
+            case FILLED:
+                animation = Animation(AssetHandler::get(BEER_FILLED));
+                break;
+            case TUMBLING:
+                animation = Animation(AssetHandler::get(BEER_TUMBLE));
+                break;
+        }
+    }
 };
 
 #endif // BEER_H

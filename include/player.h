@@ -11,9 +11,9 @@ public:
     uint8_t positionIndex;
     bool filling = false;
     Animation animations[4] = {
-        Animation(uint8_t(1), AssetHandler::get(PLAYER_STANDING), uint8_t(0)), // None
-        Animation(uint8_t(1), AssetHandler::get(PLAYER_STANDING), uint8_t(0)), // Idle
-        Animation(uint8_t(1), AssetHandler::get(PLAYER_FILLING), uint8_t(0)),  // Filling
+        Animation(AssetHandler::get(PLAYER_STANDING), uint8_t(0)), // None
+        Animation(AssetHandler::get(PLAYER_STANDING), uint8_t(0)), // Idle
+        Animation(AssetHandler::get(PLAYER_FILLING), uint8_t(0)),  // Filling
         Animation()   // Running
     };
     Player() : Entity(), positionIndex(0) {}
